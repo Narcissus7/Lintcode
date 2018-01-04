@@ -36,8 +36,8 @@ def pop():
 
 
 def top():
-    if stack2:
-        return stack1[-1]
+    if stack1:
+        return stack1[0]
     else:
         return 0
 
@@ -45,13 +45,13 @@ def top():
 push(1)
 # print(stack1[::-1])
 a = pop()
-print(a)
-print(stack1,stack2)
+# print(a)
+# print(stack1,stack2)
 push(2)
 push(3)
 b = top()
-print(b)
+# print(b)
 c = pop()
-print(c)
+# print(c)
 
 
