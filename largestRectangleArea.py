@@ -54,54 +54,31 @@ import time
 #     print(time.strftime('%H:%M:%S', time.localtime(time.time())))
         # temp_w =
 
+
 def largestRectangleArea(height):
-    res = []
+    maxArea = 0
     stack = []
-    stacklen = 0
-    area = 0
     height.append(0)
-    for i in range(len(height)):
-        if (not stack) or (height[stack[-1]] <= height[i]):
-            stack.append(i)
+    length = len(height)
+    for i in range(length):
+        if i == length:
+            nowh = 0
         else:
-            if len(stack) > stacklen:
-                stacklen = len(stack)
-            tmp_index = stack.pop()
+            nowh = height[i]
+
+        while (stack) and (nowh <= height[stack[-1]]):
+            h = height[stack[-1]]
+            stack.pop()
             if not stack:
-                temp_area = i * height[tmp_index]
+                w = i
             else:
-                temp_area = (i - stack[-1] - 1) * height[tmp_index]
-                # print(i, height[tmp_index])
-            if temp_area > area:
-                area = temp_area
-        res.append(area)
-    print(max(res), res)
+                w = i - 1 - stack[-1]
+            area = w * h
+            maxArea = max(maxArea, area)
 
+        stack.append(i)
 
-# def largestRectangleArea(height):
-#     maxArea = 0
-#     stack = []
-#     height.append(0)
-#     length = len(height)
-#     for i in range(length):
-#         if i == length:
-#             nowh = 0
-#         else:
-#             nowh = height[i]
-#
-#         while (stack) and (nowh <= height[stack[-1]]):
-#             h = height[stack[-1]]
-#             stack.pop()
-#             if not stack:
-#                 w = i
-#             else:
-#                 w = i - 1 - stack[-1]
-#             area = w * h
-#             maxArea = max(maxArea, area)
-#
-#         stack.append(i)
-#
-#     print(maxArea)
+    print(maxArea)
 
 largestRectangleArea([5,5,6,6,4,4])
 largestRectangleArea([2,1,5,6,2,3])
