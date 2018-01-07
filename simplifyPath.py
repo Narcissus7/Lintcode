@@ -1,6 +1,7 @@
 # import re   re好耗时
 import time
 
+
 def simplifyPath(path):
     # write your code here
     # path = re.sub('///', '/', path)
@@ -21,6 +22,7 @@ def simplifyPath(path):
         res = '/' + temp.replace(',', '/')
 
     return res
+
 
 def simplifyPath1(path):
 
