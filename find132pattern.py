@@ -17,13 +17,17 @@
 def find132pattern(nums):
     # write your code here
 
-    for i in range(len(nums)-2):
-        temp = [nums[i], nums[i+1], nums[i+2]]
-        if nums[i] < nums[i+2] < nums[i+1]:
-            return True
-        else:
-            continue
+    if nums:
+        stack = [nums[0]]
 
+        for i in range(1, len(nums)):
+            if nums[i] >= stack[0] and nums[i] >= stack[-1]:
+                stack.append(nums[i])
+            else:
+                if nums[i] > min(stack):
+                    return True
+                else:
+                    stack.append(nums[i])
     return False
 
 
